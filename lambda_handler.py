@@ -13,11 +13,14 @@ class VerkadaDB():
 ## To-do: add class methods
     def addTable(self, tableName):
         db = self._data
-        db[tableName] = None
+        db[tableName] = {}
         
     def addRow(self,tableName, rowData):
         db = self._data
-        db[tableName] = rowData
+        length = len(db[tableName])
+        db[tableName][length+1] = rowData
+
+
     
     def getRows(self,tableName, matchingCriteria):
         pass
@@ -37,12 +40,17 @@ def lambda_handler(json_input):
     global dbInstance
     dbInstance.addTable("table1")
     dbInstance.addRow("table1", {"name":"Guled"})
+    dbInstance.addRow("table1", {"name":"Ali"})
     json_output = json.dumps({})
     ## Output: JSON String which mimics AWS Lambda Output
     return json_output
 
 ## To Do: Create a table to hold the information you process
-print(dbInstance._data)
+dbInstance.addTable("table1")
+dbInstance.addRow("table1", {"name":"Guled"})
+dbInstance.addRow("table1", {"name":"Ali"})
+print(dbInstance._data["table1"])
+print(len(dbInstance._data["table1"]))
     
 
 ## Do not edit
