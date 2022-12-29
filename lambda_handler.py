@@ -36,34 +36,45 @@ dbInstance = VerkadaDB()
 ## Input: JSON String which mimics AWS Lambda input
 def lambda_handler(json_input):
     global dbInstance
+    json_input = json.loads(json_input)
+    email = json_input["email"]
+    split_result = re.split(r"[@\.]", json_input["email"])
+    email = json_input["email"]
+    name = split_result[0]
+    domain = split_result[1]
+    topLevelName = split_result[-1]
 
+    print(name)
+    print(domain)
+    print(topLevelName)
+    print(email)
 
-
-    print(dbInstance._data["table1"])
-    json_output = json.dumps({})
+    #print(dbInstance._data["table1"])
+    #json_output = json.dumps({})
     ## Output: JSON String which mimics AWS Lambda Output
-    return json_output
+    #print(json_output)
+    #return json_output
 
 ## To Do: Create a table to hold the information you process
     
 
 ## Do not edit
 lambda_handler(json.dumps({"email":"John@acompany.com"}))
-lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
-lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
-lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
-lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
-lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
-lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
-lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
-lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
-lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
-lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
-lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
-lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
-lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
-lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
-lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
-lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
+#lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
+#lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
+#lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
+#lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
+#lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
+#lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
+#lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
+#lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
+#lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
+#lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
+#lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
+#lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
 
 ## Put code for Part 2 here
