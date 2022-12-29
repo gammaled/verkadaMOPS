@@ -12,7 +12,8 @@ class VerkadaDB():
         
 ## To-do: add class methods
     def addTable(self, tableName):
-        pass
+        db = self._data
+        db[tableName] = None
         
     def addRow(self,tableName, rowData):
         pass
@@ -39,6 +40,8 @@ def lambda_handler(json_input):
     return json_output
 
 ## To Do: Create a table to hold the information you process
+dbInstance.addTable("car")
+print(dbInstance._data)
     
 
 ## Do not edit
