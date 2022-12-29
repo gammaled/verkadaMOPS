@@ -42,7 +42,7 @@ def get_response(name):
     gender_response = requests.get(genderize_url).json()
     country_response = requests.get(nationalize_url).json()
 
-    age = age_response["name"]
+    age = age_response["age"]
     gender = gender_response["gender"]
     country = country_response["country"][0]["country_id"]
 
@@ -59,12 +59,22 @@ def lambda_handler(json_input):
     domain = split_result[1]
     topLevelName = split_result[-1]
 
-    print(get_response(name))
+    response = get_response(name)
+    age = response[0]
+    gender = response[1]
+    nationality = response[2]
 
-    print(name)
-    print(domain)
-    print(topLevelName)
-    print(email)
+    json_output = {
+        "name": name,
+        "email": email,
+        "domain": domain,
+        "topLevelName": topLevelName,
+        "age": age,
+        "gender": gender,
+        "nationality": nationality
+    }
+
+    print(json_output)
 
 
 
