@@ -38,17 +38,36 @@ dbInstance = VerkadaDB()
 def lambda_handler(json_input):
     global dbInstance
     json_input = json.loads(json_input)
-    email = json_input["email"]
     split_result = re.split(r"[@\.]", json_input["email"])
     email = json_input["email"]
     name = split_result[0]
     domain = split_result[1]
     topLevelName = split_result[-1]
 
+    print(get_response(name))
+
+
     print(name)
     print(domain)
     print(topLevelName)
     print(email)
+
+def get_response(name):
+    agify_url = "https://api.agify.io?name=" + name
+    genderize_url = "https://api.genderize.io?name=" + name
+    nationalize_url = "https://api.nationalize.io?name=" + name
+
+    age_response = requests.get(agify_url).json()
+    gender_response = requests.get(genderize_url).json()
+    country_response = requests.get(nationalize_url).json()
+
+    age = age_response["name"]
+    gender = gender_response["gender"]
+    country = country_response["country"][0]["country_id"]
+
+    return [age, gender, country]
+
+
 
     #print(dbInstance._data["table1"])
     #json_output = json.dumps({})
