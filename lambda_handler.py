@@ -64,7 +64,7 @@ def lambda_handler(json_input):
     gender = response[1]
     nationality = response[2]
 
-    json_output = {
+    personal_details = {
         "name": name,
         "email": email,
         "domain": domain,
@@ -73,16 +73,10 @@ def lambda_handler(json_input):
         "gender": gender,
         "nationality": nationality
     }
-
+    json_output = json.dumps(personal_details)
     print(json_output)
-
-
-
-    #print(dbInstance._data["table1"])
-    #json_output = json.dumps({})
     ## Output: JSON String which mimics AWS Lambda Output
-    #print(json_output)
-    #return json_output
+    return json_output
 
 ## To Do: Create a table to hold the information you process
     
