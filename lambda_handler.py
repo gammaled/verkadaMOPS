@@ -17,8 +17,7 @@ class VerkadaDB():
         
     def addRow(self,tableName, rowData):
         db = self._data
-        length = len(db[tableName])
-        db[tableName][length+1] = rowData
+        db[tableName][rowData["email"]] = rowData
 
 
     
@@ -38,19 +37,18 @@ dbInstance = VerkadaDB()
 ## Input: JSON String which mimics AWS Lambda input
 def lambda_handler(json_input):
     global dbInstance
-    dbInstance.addTable("table1")
-    dbInstance.addRow("table1", {"name":"Guled"})
-    dbInstance.addRow("table1", {"name":"Ali"})
+    #dbInstance.addTable("table1")
+    #dbInstance.addRow("table1", {"name":"Guled"})
+    #dbInstance.addRow("table1", {"name":"Ali"})
     json_output = json.dumps({})
     ## Output: JSON String which mimics AWS Lambda Output
     return json_output
 
 ## To Do: Create a table to hold the information you process
 dbInstance.addTable("table1")
-dbInstance.addRow("table1", {"name":"Guled"})
-dbInstance.addRow("table1", {"name":"Ali"})
+dbInstance.addRow("table1", {"email":"Guled"})
+dbInstance.addRow("table1", {"email":"Ali"})
 print(dbInstance._data["table1"])
-print(len(dbInstance._data["table1"]))
     
 
 ## Do not edit
