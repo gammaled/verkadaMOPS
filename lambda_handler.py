@@ -35,7 +35,14 @@ class VerkadaDB():
                personal_details[itemToChange] = updateInformation
     
     def deleteRows(self,tableName, matchingCriteria):
-        pass
+        db = self._data
+        emails = db[tableName]
+        matchingEmail = None
+        for email in emails:
+            personal_details = emails[email]
+            if personal_details["name"] == matchingCriteria:
+                matchingEmail = email
+        del emails[matchingEmail]
 
 ## Do not edit   
 dbInstance = VerkadaDB()
@@ -107,7 +114,7 @@ lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
 #lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
 #lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
 #lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
-#lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
+lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
 #lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
 #lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
 #lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
@@ -122,8 +129,9 @@ display(df)
 ##To Do: Add function that lets user to check data in table and input changes
 
 ## Put code for Part 2 here
-dbInstance.updateRows("table1", "Kyle", "age", 26)
-dbInstance.updateRows("table1", "Kyle", "nationality", "BA")
+#dbInstance.updateRows("table1", "Kyle", "age", 26)
+#dbInstance.updateRows("table1", "Kyle", "nationality", "BA")
+dbInstance.deleteRows("table1", "Craig")
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
 df = pd.DataFrame(pd_object)
 display(df)
