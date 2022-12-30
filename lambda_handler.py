@@ -26,8 +26,13 @@ class VerkadaDB():
     def getRows(self,tableName, matchingCriteria):
         pass
     
-    def updateRows(self, tableName, matchingCriteria, updateInformation):
-        pass
+    def updateRows(self, tableName, matchingCriteria, itemToChange, updateInformation):
+        db = self._data
+        emails = db[tableName]
+        for email in emails:
+            personal_details = emails[email]
+            if personal_details["name"] == matchingCriteria:
+               personal_details[itemToChange] = updateInformation
     
     def deleteRows(self,tableName, matchingCriteria):
         pass
@@ -91,23 +96,23 @@ def lambda_handler(json_input):
     
 
 ## Do not edit
-lambda_handler(json.dumps({"email":"John@acompany.com"}))
-lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
+#lambda_handler(json.dumps({"email":"John@acompany.com"}))
+#lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
 lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
-lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
-lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
-lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
-lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
-lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
-lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
-lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
-lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
-lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
-lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
-lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
-lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
-lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
-lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
+#lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
+#lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
+##lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
+#lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
+#lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
+#lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
+#lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
+#lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
+#lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
+#lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
+#lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
 
 ##Create a table to hold the information you process
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
@@ -115,3 +120,8 @@ df = pd.DataFrame(pd_object)
 display(df)
 
 ## Put code for Part 2 here
+dbInstance.updateRows("table1", "Kyle", "age", 26)
+dbInstance.updateRows("table1", "Kyle", "nationality", "BA")
+pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
+df = pd.DataFrame(pd_object)
+display(df)
