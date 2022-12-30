@@ -31,7 +31,8 @@ class VerkadaDB():
         pass
 
 ## Do not edit   
-dbInstance = VerkadaDB()  
+dbInstance = VerkadaDB()
+dbInstance.addTable("table1")
 
 def get_response(name):
     agify_url = "https://api.agify.io?name=" + name
@@ -74,7 +75,9 @@ def lambda_handler(json_input):
         "nationality": nationality
     }
     json_output = json.dumps(personal_details)
-    print(json_output)
+    dbInstance.addRow("table1", personal_details)
+    print(dbInstance._data)
+    #print(json_output)
     ## Output: JSON String which mimics AWS Lambda Output
     return json_output
 
@@ -83,8 +86,8 @@ def lambda_handler(json_input):
 
 ## Do not edit
 lambda_handler(json.dumps({"email":"John@acompany.com"}))
-#lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
-#lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
+lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
+lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
 #lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
 #lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
 #lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
