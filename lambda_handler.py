@@ -65,29 +65,32 @@ def lambda_handler(json_input):
     gender = response[1]
     nationality = response[2]
 
-    personal_details = {
-        "name": name,
-        "email": email,
-        "domain": domain,
-        "topLevelName": topLevelName,
-        "age": age,
-        "gender": gender,
-        "nationality": nationality
-    }
-    json_output = json.dumps(personal_details)
-    dbInstance.addRow("table1", personal_details)
-    print(dbInstance._data)
-    #print(json_output)
-    ## Output: JSON String which mimics AWS Lambda Output
-    return json_output
+    if domain != "verkada":
+        personal_details = {
+            "name": name,
+            "email": email,
+            "domain": domain,
+            "topLevelName": topLevelName,
+            "age": age,
+            "gender": gender,
+            "nationality": nationality
+        }
+        json_output = json.dumps(personal_details)
+        dbInstance.addRow("table1", personal_details)
+        print(dbInstance._data)
+        #print(json_output)
+        ## Output: JSON String which mimics AWS Lambda Output
+        return json_output
+    else:
+        return
 
 ## To Do: Create a table to hold the information you process
     
 
 ## Do not edit
-lambda_handler(json.dumps({"email":"John@acompany.com"}))
-lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
-lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
+#lambda_handler(json.dumps({"email":"John@acompany.com"}))
+#lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
+#lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
 #lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
 #lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
 #lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
@@ -99,7 +102,7 @@ lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
 #lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
 #lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
 #lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
-#lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
+lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
 #lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
 #lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
 
