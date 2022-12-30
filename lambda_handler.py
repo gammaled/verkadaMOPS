@@ -109,6 +109,7 @@ lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
 lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
 lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
 
+##Create a table to hold the information you process
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
 df = pd.DataFrame(pd_object)
 display(df)
