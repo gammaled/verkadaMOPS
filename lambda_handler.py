@@ -4,6 +4,7 @@ import json
 import re
 import requests
 import pandas as pd
+from IPython.display import display
 
 # Import any libraries you need
 
@@ -78,33 +79,38 @@ def lambda_handler(json_input):
         }
         json_output = json.dumps(personal_details)
         dbInstance.addRow("table1", personal_details)
-        print(dbInstance._data)
         #print(json_output)
         ## Output: JSON String which mimics AWS Lambda Output
         return json_output
     else:
         return
 
+
 ## To Do: Create a table to hold the information you process
+
     
 
 ## Do not edit
-#lambda_handler(json.dumps({"email":"John@acompany.com"}))
-#lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
-#lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
-#lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
-#lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
-#lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
-#lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
-#lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
-#lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
-#lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
-#lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
-#lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
-#lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
-#lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
+lambda_handler(json.dumps({"email":"John@acompany.com"}))
+lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
+lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
+lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
+lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
+lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
+lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
+lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
+lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
+lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
+lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
+lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
+lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
+lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
 lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
-#lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
-#lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
+lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
+lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
+
+pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
+df = pd.DataFrame(pd_object)
+display(df)
 
 ## Put code for Part 2 here
