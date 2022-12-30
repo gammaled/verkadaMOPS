@@ -24,7 +24,9 @@ class VerkadaDB():
         db[tableName][rowData["email"]] = rowData
     
     def getRows(self,tableName, matchingCriteria):
-        pass
+        print(df)
+
+
     
     def updateRows(self, tableName, matchingCriteria, itemToChange, updateInformation):
         db = self._data
@@ -49,9 +51,9 @@ dbInstance = VerkadaDB()
 dbInstance.addTable("table1")
 
 def get_response(name):
-    agify_url = "https://api.agify.io?name=" + name
-    genderize_url = "https://api.genderize.io?name=" + name
-    nationalize_url = "https://api.nationalize.io?name=" + name
+    agify_url = "https://api.agify.io?name=" + name + "&apikey=0199bc0cd615eaf84f0e771f82b6f4bf"
+    genderize_url = "https://api.genderize.io?name=" + name + "&apikey=0199bc0cd615eaf84f0e771f82b6f4bf"
+    nationalize_url = "https://api.nationalize.io?name=" + name + "&apikey=0199bc0cd615eaf84f0e771f82b6f4bf"
 
     age_response = requests.get(agify_url).json()
     gender_response = requests.get(genderize_url).json()
@@ -103,35 +105,36 @@ def lambda_handler(json_input):
     
 
 ## Do not edit
-#lambda_handler(json.dumps({"email":"John@acompany.com"}))
-#lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
+lambda_handler(json.dumps({"email":"John@acompany.com"}))
+lambda_handler(json.dumps({"email":"Willy@bcompany.org"}))
 lambda_handler(json.dumps({"email":"Kyle@ccompany.com"}))
-#lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
-#lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
-#lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
-##lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
-#lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
-#lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
-#lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
-#lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
+lambda_handler(json.dumps({"email":"Georgie@dcompany.net"}))
+lambda_handler(json.dumps({"email":"Karen@eschool.edu"}))
+lambda_handler(json.dumps({"email":"Annie@usa.gov"}))
+lambda_handler(json.dumps({"email":"Elvira@fcompay.org"}))
+lambda_handler(json.dumps({"email":"Juan@gschool.edu"}))
+lambda_handler(json.dumps({"email":"Julie@hcompany.com"}))
+lambda_handler(json.dumps({"email":"Pierre@ischool.edu"}))
+lambda_handler(json.dumps({"email":"Ellen@canada.gov"}))
 lambda_handler(json.dumps({"email":"Craig@jcompany.org"}))
-#lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
-#lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
-#lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
-#lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
-#lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
+lambda_handler(json.dumps({"email":"Juan@kcompany.net"}))
+lambda_handler(json.dumps({"email":"Jack@verkada.com"}))
+lambda_handler(json.dumps({"email":"Jason@verkada.com"}))
+lambda_handler(json.dumps({"email":"Billy@verkada.com"}))
+lambda_handler(json.dumps({"email":"Brent@verkada.com"}))
 
 ##Create a table to hold the information you process
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
 df = pd.DataFrame(pd_object)
-display(df)
 
 ##To Do: Add function that lets user to check data in table and input changes
 
 ## Put code for Part 2 here
-#dbInstance.updateRows("table1", "Kyle", "age", 26)
-#dbInstance.updateRows("table1", "Kyle", "nationality", "BA")
+dbInstance.updateRows("table1", "Kyle", "age", 26)
+dbInstance.updateRows("table1", "Kyle", "nationality", "BA")
 dbInstance.deleteRows("table1", "Craig")
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
 df = pd.DataFrame(pd_object)
-display(df)
+dbInstance.getRows("table1", "aa")
+#display(df)
+#print(dbInstance._data)
