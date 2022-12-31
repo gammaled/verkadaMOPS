@@ -141,6 +141,12 @@ queryDf = dbInstance.getRows("table1", "age > 30 & gender == 'male'").sort_value
 #print(dbInstance._data)
 #print(queryDf)
 queryDataAsJSON = queryDf.to_json(orient="index")
-print(queryDataAsJSON)
+
 dataBaseContentsAsJSON = df.to_json(orient="index")
-print(dataBaseContentsAsJSON)
+
+api_payload = {
+    "name": "Guled Mahamoud",
+    "queryData": queryDataAsJSON,
+    "databaseContents": dataBaseContentsAsJSON
+}
+print(api_payload)
