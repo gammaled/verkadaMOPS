@@ -24,7 +24,8 @@ class VerkadaDB():
         db[tableName][rowData["email"]] = rowData
     
     def getRows(self,tableName, matchingCriteria):
-        print(df)
+        queriedData = df.query(matchingCriteria,  inplace=False)
+        return queriedData
 
 
     
@@ -135,6 +136,7 @@ dbInstance.updateRows("table1", "Kyle", "nationality", "BA")
 dbInstance.deleteRows("table1", "Craig")
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
 df = pd.DataFrame(pd_object)
-dbInstance.getRows("table1", "aa")
-#display(df)
+maleDf = dbInstance.getRows("table1", "age > 30 & gender == 'male'").sort_values(by="age",ascending=True, inplace=False, kind="mergesort").iloc[:3]
+display(df)
 #print(dbInstance._data)
+print(maleDf)
