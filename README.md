@@ -1,4 +1,4 @@
-# MOPS Takehome Assessment: API Integration (python)
+# Verkada MOPS
 
 ### *Summary*
 
