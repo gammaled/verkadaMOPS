@@ -137,9 +137,6 @@ dbInstance.deleteRows("table1", "Craig")
 pd_object = pd.read_json(json.dumps(dbInstance._data["table1"]), orient='index')
 df = pd.DataFrame(pd_object)
 queryDf = dbInstance.getRows("table1", "age > 30 & gender == 'male'").sort_values(by="age",ascending=True, inplace=False, kind="mergesort").iloc[:3]
-#display(df)
-#print(dbInstance._data)
-#print(queryDf)
 queryDataAsJSON = queryDf.to_json(orient="index")
 
 dataBaseContentsAsJSON = df.to_json(orient="index")
@@ -150,5 +147,6 @@ api_payload = {
     "databaseContents": dataBaseContentsAsJSON
 }
 post_url = "https://rwph529xx9.execute-api.us-west-1.amazonaws.com/prod/pushToSlack"
-print(api_payload)
-requests.post(post_url, data={api_payload})
+requests.post(post_url, data=api_payload)
+status_code = requests.post(post_url, data=api_payload).status_code
+print(status_code)
