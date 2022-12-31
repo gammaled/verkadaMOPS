@@ -51,9 +51,9 @@ dbInstance = VerkadaDB()
 dbInstance.addTable("table1")
 
 def get_response(name):
-    agify_url = "https://api.agify.io?name=" + name + "&apikey=0199bc0cd615eaf84f0e771f82b6f4bf"
-    genderize_url = "https://api.genderize.io?name=" + name + "&apikey=0199bc0cd615eaf84f0e771f82b6f4bf"
-    nationalize_url = "https://api.nationalize.io?name=" + name + "&apikey=0199bc0cd615eaf84f0e771f82b6f4bf"
+    agify_url = "https://api.agify.io?name=" + name + "&apikey={ADD_YOUR_KEY}"
+    genderize_url = "https://api.genderize.io?name=" + name + "&apikey={ADD_YOUR_KEY}"
+    nationalize_url = "https://api.nationalize.io?name=" + name + "&apikey={ADD_YOUR_KEY}"
 
     age_response = requests.get(agify_url).json()
     gender_response = requests.get(genderize_url).json()
