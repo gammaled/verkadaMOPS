@@ -25,8 +25,6 @@ class VerkadaDB():
     def getRows(self,tableName, matchingCriteria):
         queriedData = df.query(matchingCriteria,  inplace=False)
         return queriedData
-
-
     
     def updateRows(self, tableName, matchingCriteria, itemToChange, updateInformation):
         db = self._data
@@ -46,9 +44,11 @@ class VerkadaDB():
                 matchingEmail = email
         del emails[matchingEmail]
 
+
 ## Do not edit   
 dbInstance = VerkadaDB()
 dbInstance.addTable("table1")
+
 
 def get_response(name):
     agify_url = "https://api.agify.io?name=" + name + "&apikey={ADD_YOUR_KEY}"
@@ -64,6 +64,7 @@ def get_response(name):
     country = country_response["country"][0]["country_id"]
 
     return [age, gender, country]
+
 
 ## To-do: Implement Function (mimics AWS Lambda handler)
 ## Input: JSON String which mimics AWS Lambda input
@@ -98,10 +99,6 @@ def lambda_handler(json_input):
         return json_output
     else:
         return
-
-
-## To Do: Create a table to hold the information you process
-
     
 
 ## Do not edit
