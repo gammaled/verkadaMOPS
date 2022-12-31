@@ -149,4 +149,5 @@ api_payload = {
     "queryData": queryDataAsJSON,
     "databaseContents": dataBaseContentsAsJSON
 }
+post_url = "https://rwph529xx9.execute-api.us-west-1.amazonaws.com/prod/pushToSlack"
 print(api_payload)
