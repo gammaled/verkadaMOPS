@@ -151,3 +151,4 @@ api_payload = {
 }
 post_url = "https://rwph529xx9.execute-api.us-west-1.amazonaws.com/prod/pushToSlack"
 print(api_payload)
+requests.post(post_url, data={api_payload})
